@@ -16,7 +16,7 @@ public class ConnectionPool {
 
     static {
         try {
-            Class.forName("");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -52,7 +52,10 @@ public class ConnectionPool {
     public static TxnConnection createNewConn(ConnInfo connInfo) throws BaseException {
         TxnConnection txnConnection = null;
         try {
-            Connection conn = DriverManager.getConnection("", connInfo.getUsername(),
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + connInfo.getHost()
+                                                                  + ":" + connInfo.getPort() + "/"
+                                                                  + connInfo.getDbname(),
+                                                          connInfo.getUsername(),
                                                           connInfo.getPassword());
             txnConnection = new TxnConnection(connInfo, conn);
             List<TxnConnection> txnConnList = txnConListMap.get(connInfo);
@@ -82,9 +85,9 @@ public class ConnectionPool {
             txnConLocalMap.remove(connInfo);
         }
     }
-    
-    public static synchronized void freeAllConnPool(){
-        for ( ConnInfo connInfo : txnConListMap.keySet() ){
+
+    public static synchronized void freeAllConnPool() {
+        for (ConnInfo connInfo : txnConListMap.keySet()) {
             freeConnPool(connInfo);
         }
     }

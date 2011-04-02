@@ -1,11 +1,17 @@
 package com.jy.recimport.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.jy.recimport.action.ConnAction;
 import com.jy.recimport.action.ImportAction;
@@ -17,12 +23,13 @@ import com.jy.recimport.util.BaseException;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class MainFrame extends JFrame implements ConnAction, ImportAction{
+public class MainFrame extends JFrame implements ConnAction, ImportAction {
     private ConnPanel connPanel;
     private ImportPanel importPanel;
     private ImportService importService;
 
     public MainFrame() {
+    
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -37,7 +44,7 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction{
         setTitle("数据导入程序");
         getContentPane().setLayout(new BorderLayout());
         importService = new ImportService();
-        
+
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         getContentPane().add(panel, BorderLayout.CENTER);
@@ -47,8 +54,16 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction{
         connPanel.setConnAction(this);
         connPanel.setConnectEnabled(true);
         importPanel = new ImportPanel();
+        importPanel.setEnabled(false);
+        importPanel.setImportAction(this);
         panel.add(importPanel, BorderLayout.SOUTH);
 
+    }
+
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        super.paint(g);
     }
 
     private void safeExit() {
@@ -62,9 +77,15 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction{
     private static final long serialVersionUID = 6078189396163696118L;
 
     public static void main(String[] args) {
+        
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Throwable tr) {
+            tr.printStackTrace();
+        }
         MainFrame mainFrame = new MainFrame();
         mainFrame.pack();
-        mainFrame.setSize(500, 340);
+        mainFrame.setSize(500, 390);
         mainFrame.setResizable(false);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
@@ -75,7 +96,7 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction{
         importService.connectDB(connInfo);
         importPanel.setEnabled(true);
         connPanel.setConnectEnabled(false);
-        
+
     }
 
     @Override
@@ -86,8 +107,9 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction{
     }
 
     @Override
-    public void importData(ImportInfo importInfo) {
-        
+    public void importData(ImportInfo importInfo) throws BaseException {
+        this.importService.importData(importInfo);
+
     }
 
 }

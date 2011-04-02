@@ -9,10 +9,10 @@ public class ConnInfo {
     
     public ConnInfo(){
         this.host = "localhost";
-        this.port = "2003";
-        this.dbname = "osrdb";
-        this.username = "sysdba";
-        this.password = "password";
+        this.port = "3306";
+        this.dbname = "test";
+        this.username = "root";
+        this.password = "root";
     }
 
     public String getHost() {
