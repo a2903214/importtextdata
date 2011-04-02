@@ -9,9 +9,9 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.LookAndFeel;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.EmptyBorder;
 
 import com.jy.recimport.action.ConnAction;
 import com.jy.recimport.action.ImportAction;
@@ -20,8 +20,6 @@ import com.jy.recimport.model.ConnInfo;
 import com.jy.recimport.model.ImportInfo;
 import com.jy.recimport.service.ImportService;
 import com.jy.recimport.util.BaseException;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame implements ConnAction, ImportAction {
     private ConnPanel connPanel;
