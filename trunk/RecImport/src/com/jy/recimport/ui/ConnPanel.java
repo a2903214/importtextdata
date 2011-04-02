@@ -2,7 +2,6 @@ package com.jy.recimport.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -49,7 +48,7 @@ public class ConnPanel extends JPanel {
     private JLabel dbnameLabel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
-    
+
     private JButton connButton;
     private JButton disconnButton;
 
@@ -61,7 +60,9 @@ public class ConnPanel extends JPanel {
         this.setLayout(new BorderLayout(0, 0));
 
         JPanel connPanel = new JPanel();
-        connPanel.setBorder(new CompoundBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "\u8FDE\u63A5\u9762\u677F", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 20, 10, 20)));
+        connPanel.setBorder(new CompoundBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)),
+                "\u8FDE\u63A5\u9762\u677F", TitledBorder.LEADING, TitledBorder.TOP, null,
+                new Color(0, 0, 0)), new EmptyBorder(10, 20, 10, 20)));
         this.add(connPanel, BorderLayout.NORTH);
         connPanel.setLayout(new BorderLayout(0, 0));
 
@@ -212,7 +213,6 @@ public class ConnPanel extends JPanel {
         initDataBindings();
     }
 
-
     protected void initDataBindings() {
         BeanProperty<ConnInfo, String> connInfoBeanProperty = BeanProperty.create("host");
         BeanProperty<JTextField, String> jTextFieldBeanProperty = BeanProperty.create("text");
@@ -249,16 +249,17 @@ public class ConnPanel extends JPanel {
                                    passwordTextField, jTextFieldBeanProperty_4);
         autoBinding_4.bind();
     }
-    
-    public void setConnectEnabled( boolean enabled ){
-        for ( Component c: this.getComponents() ){
-            c.setEnabled(enabled);
-        }
+
+    public void setConnectEnabled(boolean enabled) {
+        ipTextField.setEnabled(enabled);
+        portTextField.setEnabled(enabled);
+        dbnameTextField.setEnabled(enabled);
+        usernameTextField.setEnabled(enabled);
+        passwordTextField.setEnabled(enabled);
         this.connButton.setEnabled(enabled);
         this.disconnButton.setEnabled(!enabled);
         super.setEnabled(enabled);
     }
-
 
     public void setConnAction(ConnAction connAction) {
         this.connAction = connAction;
