@@ -1,26 +1,26 @@
-# phpMyAdmin SQL Dump
-# version 2.11.5
-# http://www.phpmyadmin.net
-#
-# 主机: localhost
-# 生成日期: 2008 年 11 月 07 日 11:55
-# 服务器版本: 5.0.22
-# PHP 版本: 5.2.5
+--phpMyAdmin SQL Dump
+--version 2.11.5
+--http://www.phpmyadmin.net
+--
+--主机: localhost
+--生成日期: 2008 年 11 月 07 日 11:55
+--服务器版本: 5.0.22
+--PHP 版本: 5.2.5
 
-#SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+--SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
-#
-# 数据库: `xpaper`
-#
+--
+--数据库: `xpaper`
+--
 DROP DATABASE `xpaper`;
-CREATE DATABASE `xpaper` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE `xpaper` DEFAULT CHARACTER SET UTF8 ;
 USE `xpaper`;
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_account`
-#
+--
+--表的结构 `gp_account`
+--
 
 DROP TABLE IF EXISTS `gp_account`;
 CREATE TABLE IF NOT EXISTS `gp_account` (
@@ -42,18 +42,18 @@ CREATE TABLE IF NOT EXISTS `gp_account` (
   `account_userpass` varchar(4) default NULL,
   `account_dt` date default NULL,
   PRIMARY KEY  (`account_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_account`
-#
+--
+--导出表中的数据 `gp_account`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_admin`
-#
+--
+--表的结构 `gp_admin`
+--
 
 DROP TABLE IF EXISTS `gp_admin`;
 CREATE TABLE IF NOT EXISTS `gp_admin` (
@@ -66,20 +66,20 @@ CREATE TABLE IF NOT EXISTS `gp_admin` (
   `admin_showname` varchar(50) default NULL,
   `admin_email` varchar(100) default NULL,
   PRIMARY KEY  (`admin_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=88 ;
 
-#
-# 导出表中的数据 `gp_admin`
-#
+--
+--导出表中的数据 `gp_admin`
+--
 
 INSERT INTO `gp_admin` (`admin_id`, `admin_ent_id`, `admin_name`, `admin_pass`, `admin_work`, `admin_rank`, `admin_showname`, `admin_email`) VALUES
 (87, 107, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'Xpaper多媒体数字报', 100, '李总编', 'sales@jnostart.com');
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_base`
-#
+--
+--表的结构 `gp_base`
+--
 
 DROP TABLE IF EXISTS `gp_base`;
 CREATE TABLE IF NOT EXISTS `gp_base` (
@@ -104,20 +104,20 @@ CREATE TABLE IF NOT EXISTS `gp_base` (
   `base_paper_width` int(11) NOT NULL default '0',
   `base_old_url` varchar(200) default NULL,
   PRIMARY KEY  (`base_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=85 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=85 ;
 
-#
-# 导出表中的数据 `gp_base`
-#
+--
+--导出表中的数据 `gp_base`
+--
 
 INSERT INTO `gp_base` (`base_id`, `base_ent_id`, `base_sitename`, `base_url`, `base_createtime`, `base_sponser`, `base_address`, `base_zip`, `base_tel`, `base_email`, `base_copyright`, `base_logo`, `base_logo_header`, `base_defaultimg`, `base_pdf`, `base_ps`, `base_theme_id`, `base_allow_comment`, `base_paper_width`, `base_old_url`) VALUES
 (84, 107, 'Xpaper数字报刊', 'localhost', '2008-04-13 13:40:59', '北京金启程科技', '北京市海淀区', '100084', '01062713015', 'sales@jinostart.com', '', '', '', '', 0, 0, 1, 0, 550, '');
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_block`
-#
+--
+--表的结构 `gp_block`
+--
 
 DROP TABLE IF EXISTS `gp_block`;
 CREATE TABLE IF NOT EXISTS `gp_block` (
@@ -131,18 +131,18 @@ CREATE TABLE IF NOT EXISTS `gp_block` (
   `block_bgcolor` varchar(6) default NULL,
   `block_ent_id` int(11) default NULL,
   PRIMARY KEY  (`block_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_block`
-#
+--
+--导出表中的数据 `gp_block`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_comment`
-#
+--
+--表的结构 `gp_comment`
+--
 
 DROP TABLE IF EXISTS `gp_comment`;
 CREATE TABLE IF NOT EXISTS `gp_comment` (
@@ -155,18 +155,18 @@ CREATE TABLE IF NOT EXISTS `gp_comment` (
   `comment_time` datetime default NULL,
   `comment_status` int(11) default NULL,
   PRIMARY KEY  (`comment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_comment`
-#
+--
+--导出表中的数据 `gp_comment`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_contribute`
-#
+--
+--表的结构 `gp_contribute`
+--
 
 DROP TABLE IF EXISTS `gp_contribute`;
 CREATE TABLE IF NOT EXISTS `gp_contribute` (
@@ -186,20 +186,20 @@ CREATE TABLE IF NOT EXISTS `gp_contribute` (
   `contribute_ip` varchar(50) default NULL,
   `contribute_ent_id` int(11) default NULL,
   PRIMARY KEY  (`contribute_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=2 ;
 
-#
-# 导出表中的数据 `gp_contribute`
-#
+--
+--导出表中的数据 `gp_contribute`
+--
 
 INSERT INTO `gp_contribute` (`contribute_id`, `contribute_title`, `contribute_author`, `contribute_dept`, `contribute_address`, `contribute_zip`, `contribute_email`, `contribute_tel`, `contribute_body`, `contribute_time`, `contribute_img`, `contribute_status`, `contribute_filesize`, `contribute_ip`, `contribute_ent_id`) VALUES
 (1, 'fsfds', 'fsf', 'cxscxzcz', 'czxczx', '43455', 'fds@we', '4345454555', 'vfdsszc', '2009-03-20 13:17:56', '', 0, 0, '127.0.0.1', 107);
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_css`
-#
+--
+--表的结构 `gp_css`
+--
 
 DROP TABLE IF EXISTS `gp_css`;
 CREATE TABLE IF NOT EXISTS `gp_css` (
@@ -211,18 +211,18 @@ CREATE TABLE IF NOT EXISTS `gp_css` (
   `css_lineheight` varchar(50) default NULL,
   `css_others` text,
   PRIMARY KEY  (`css_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_css`
-#
+--
+--导出表中的数据 `gp_css`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_div`
-#
+--
+--表的结构 `gp_div`
+--
 
 DROP TABLE IF EXISTS `gp_div`;
 CREATE TABLE IF NOT EXISTS `gp_div` (
@@ -238,18 +238,18 @@ CREATE TABLE IF NOT EXISTS `gp_div` (
   `div_top` int(11) default '0',
   `div_type` varchar(10) default NULL,
   PRIMARY KEY  (`div_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_div`
-#
+--
+--导出表中的数据 `gp_div`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_divdoc`
-#
+--
+--表的结构 `gp_divdoc`
+--
 
 DROP TABLE IF EXISTS `gp_divdoc`;
 CREATE TABLE IF NOT EXISTS `gp_divdoc` (
@@ -262,18 +262,18 @@ CREATE TABLE IF NOT EXISTS `gp_divdoc` (
   `divdoc_lock` int(11) default '0',
   `divdoc_ent_id` int(11) default NULL,
   PRIMARY KEY  (`divdoc_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_divdoc`
-#
+--
+--导出表中的数据 `gp_divdoc`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_doc`
-#
+--
+--表的结构 `gp_doc`
+--
 
 DROP TABLE IF EXISTS `gp_doc`;
 CREATE TABLE IF NOT EXISTS `gp_doc` (
@@ -318,17 +318,17 @@ CREATE TABLE IF NOT EXISTS `gp_doc` (
   `doc_keywords` varchar(100) NOT NULL default '',
   `doc_foreword` text NOT NULL,
   PRIMARY KEY  (`doc_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=318 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=318 ;
 
-#
-# 导出表中的数据 `gp_doc`
-#
+--
+--导出表中的数据 `gp_doc`
+--
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_element`
-#
+--
+--表的结构 `gp_element`
+--
 
 DROP TABLE IF EXISTS `gp_element`;
 CREATE TABLE IF NOT EXISTS `gp_element` (
@@ -341,18 +341,18 @@ CREATE TABLE IF NOT EXISTS `gp_element` (
   `element_width` int(11) default NULL,
   `element_height` int(11) default NULL,
   PRIMARY KEY  (`element_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_element`
-#
+--
+--导出表中的数据 `gp_element`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_hotnews`
-#
+--
+--表的结构 `gp_hotnews`
+--
 
 DROP TABLE IF EXISTS `gp_hotnews`;
 CREATE TABLE IF NOT EXISTS `gp_hotnews` (
@@ -360,18 +360,18 @@ CREATE TABLE IF NOT EXISTS `gp_hotnews` (
   `hot_content` mediumtext,
   `hot_release_id` bigint(20) default NULL,
   PRIMARY KEY  (`hot_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_hotnews`
-#
+--
+--导出表中的数据 `gp_hotnews`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_image`
-#
+--
+--表的结构 `gp_image`
+--
 
 DROP TABLE IF EXISTS `gp_image`;
 CREATE TABLE IF NOT EXISTS `gp_image` (
@@ -384,18 +384,18 @@ CREATE TABLE IF NOT EXISTS `gp_image` (
   `image_class` int(11) default NULL,
   `image_ent_id` int(11) default NULL,
   PRIMARY KEY  (`image_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_image`
-#
+--
+--导出表中的数据 `gp_image`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_link`
-#
+--
+--表的结构 `gp_link`
+--
 
 DROP TABLE IF EXISTS `gp_link`;
 CREATE TABLE IF NOT EXISTS `gp_link` (
@@ -407,20 +407,20 @@ CREATE TABLE IF NOT EXISTS `gp_link` (
   `link_pic_url` text,
   `link_ent_id` int(11) default NULL,
   PRIMARY KEY  (`link_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=2 ;
 
-#
-# 导出表中的数据 `gp_link`
-#
+--
+--导出表中的数据 `gp_link`
+--
 
 INSERT INTO `gp_link` (`link_id`, `link_order_num`, `link_type`, `link_caption`, `link_target_url`, `link_pic_url`, `link_ent_id`) VALUES
 (1, 1, 0, '新浪', 'http://www.sina.com.cn', '', 107);
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_page`
-#
+--
+--表的结构 `gp_page`
+--
 
 DROP TABLE IF EXISTS `gp_page`;
 CREATE TABLE IF NOT EXISTS `gp_page` (
@@ -443,20 +443,20 @@ CREATE TABLE IF NOT EXISTS `gp_page` (
   `page_listtag` varchar(50) default NULL,
   `page_property` varchar(255) default NULL,
   PRIMARY KEY  (`page_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=6 ;
 
-#
-# 导出表中的数据 `gp_page`
-#
+--
+--导出表中的数据 `gp_page`
+--
 
 INSERT INTO `gp_page` (`page_id`, `page_ent_id`, `page_pid`, `page_class`, `page_type`, `page_name_cn`, `page_name_en`, `page_admin`, `page_template_id`, `page_sort`, `edit_time`, `page_duty_editor`, `page_status`, `page_counter`, `page_index`, `page_showstyle`, `page_listtag`, `page_property`) VALUES
 (5, 107, 0, 0, 1, '关于我们', '', 'admin|', 0, 2, '2009-03-21 05:20:18', '李老师', 0, 1, '1', 1, '', '00');
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_paper`
-#
+--
+--表的结构 `gp_paper`
+--
 
 DROP TABLE IF EXISTS `gp_paper`;
 CREATE TABLE IF NOT EXISTS `gp_paper` (
@@ -474,18 +474,18 @@ CREATE TABLE IF NOT EXISTS `gp_paper` (
   `paper_pdf` text,
   `paper_timestamp` varchar(13) default NULL,
   PRIMARY KEY  (`paper_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=173 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=173 ;
 
-#
-# 导出表中的数据 `gp_paper`
-#
+--
+--导出表中的数据 `gp_paper`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_papername`
-#
+--
+--表的结构 `gp_papername`
+--
 
 DROP TABLE IF EXISTS `gp_papername`;
 CREATE TABLE IF NOT EXISTS `gp_papername` (
@@ -493,18 +493,18 @@ CREATE TABLE IF NOT EXISTS `gp_papername` (
   `papername_ent_id` int(11) NOT NULL default '0',
   `papername_caption` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`papername_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_papername`
-#
+--
+--导出表中的数据 `gp_papername`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_pdf`
-#
+--
+--表的结构 `gp_pdf`
+--
 
 DROP TABLE IF EXISTS `gp_pdf`;
 CREATE TABLE IF NOT EXISTS `gp_pdf` (
@@ -519,18 +519,18 @@ CREATE TABLE IF NOT EXISTS `gp_pdf` (
   `pdf_download_counter` int(11) default '0',
   `pdf_ent_id` int(11) default NULL,
   PRIMARY KEY  (`pdf_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_pdf`
-#
+--
+--导出表中的数据 `gp_pdf`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_ps`
-#
+--
+--表的结构 `gp_ps`
+--
 
 DROP TABLE IF EXISTS `gp_ps`;
 CREATE TABLE IF NOT EXISTS `gp_ps` (
@@ -544,18 +544,18 @@ CREATE TABLE IF NOT EXISTS `gp_ps` (
   `ps_height` int(11) default NULL,
   `ps_paper_id` int(11) default NULL,
   PRIMARY KEY  (`ps_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=900 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=900 ;
 
-#
-# 导出表中的数据 `gp_ps`
-#
+--
+--导出表中的数据 `gp_ps`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_query`
-#
+--
+--表的结构 `gp_query`
+--
 
 DROP TABLE IF EXISTS `gp_query`;
 CREATE TABLE IF NOT EXISTS `gp_query` (
@@ -568,18 +568,18 @@ CREATE TABLE IF NOT EXISTS `gp_query` (
   `query_method` int(11) default NULL,
   `query_ent_id` int(11) default NULL,
   PRIMARY KEY  (`query_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_query`
-#
+--
+--导出表中的数据 `gp_query`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_release`
-#
+--
+--表的结构 `gp_release`
+--
 
 DROP TABLE IF EXISTS `gp_release`;
 CREATE TABLE IF NOT EXISTS `gp_release` (
@@ -597,20 +597,20 @@ CREATE TABLE IF NOT EXISTS `gp_release` (
   `release_whodo` varchar(20) NOT NULL default '-',
   `release_whatindex` int(11) NOT NULL default '0',
   PRIMARY KEY  (`release_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=5 ;
 
-#
-# 导出表中的数据 `gp_release`
-#
+--
+--导出表中的数据 `gp_release`
+--
 
 INSERT INTO `gp_release` (`release_id`, `release_name`, `release_time`, `release_master`, `release_pubtime`, `release_opentime`, `release_doing`, `release_total`, `release_ent_id`, `release_pagecount`, `release_to1`, `release_whodo`, `release_whatindex`) VALUES
 (4, '第1期', '2009-02-18 00:00:00', '', '2009-11-03 07:01:35', '2009-02-18 14:00:00', 1, '总第1期', 107, 0, NULL, '-', 0);
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_remark`
-#
+--
+--表的结构 `gp_remark`
+--
 
 DROP TABLE IF EXISTS `gp_remark`;
 CREATE TABLE IF NOT EXISTS `gp_remark` (
@@ -620,21 +620,21 @@ CREATE TABLE IF NOT EXISTS `gp_remark` (
   `remark_ip` varchar(50) default NULL,
   `remark_time` datetime default NULL,
   PRIMARY KEY  (`remark_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=3 ;
 
-#
-# 导出表中的数据 `gp_remark`
-#
+--
+--导出表中的数据 `gp_remark`
+--
 
 INSERT INTO `gp_remark` (`remark_id`, `remark_doc_id`, `remark_content`, `remark_ip`, `remark_time`) VALUES
 (1, 119, '?', '127.0.0.1', '2006-12-04 15:45:45'),
 (2, 151, '欢迎大家投稿，不错的，还有稿费', '127.0.0.1', '2007-02-06 14:40:53');
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_source`
-#
+--
+--表的结构 `gp_source`
+--
 
 DROP TABLE IF EXISTS `gp_source`;
 CREATE TABLE IF NOT EXISTS `gp_source` (
@@ -643,11 +643,11 @@ CREATE TABLE IF NOT EXISTS `gp_source` (
   `source_count` int(11) default '0',
   `source_ent_id` int(11) default NULL,
   PRIMARY KEY  (`source_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=6 ;
 
-#
-# 导出表中的数据 `gp_source`
-#
+--
+--导出表中的数据 `gp_source`
+--
 
 INSERT INTO `gp_source` (`source_id`, `source_name`, `source_count`, `source_ent_id`) VALUES
 (1, '323e42323', 19, 0),
@@ -656,11 +656,11 @@ INSERT INTO `gp_source` (`source_id`, `source_name`, `source_count`, `source_ent
 (4, '1', 12, 0),
 (5, '人民日报', 9, 0);
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_subject`
-#
+--
+--表的结构 `gp_subject`
+--
 
 DROP TABLE IF EXISTS `gp_subject`;
 CREATE TABLE IF NOT EXISTS `gp_subject` (
@@ -669,20 +669,20 @@ CREATE TABLE IF NOT EXISTS `gp_subject` (
   `subject_order_num` int(11) default NULL,
   `subject_ent_id` varchar(10) default NULL,
   PRIMARY KEY  (`subject_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=3 ;
 
-#
-# 导出表中的数据 `gp_subject`
-#
+--
+--导出表中的数据 `gp_subject`
+--
 
 INSERT INTO `gp_subject` (`subject_id`, `subject_name`, `subject_order_num`, `subject_ent_id`) VALUES
 (1, '专题1', 1, '1');
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_template`
-#
+--
+--表的结构 `gp_template`
+--
 
 DROP TABLE IF EXISTS `gp_template`;
 CREATE TABLE IF NOT EXISTS `gp_template` (
@@ -695,18 +695,18 @@ CREATE TABLE IF NOT EXISTS `gp_template` (
   `template_utemplate_id` int(11) default NULL,
   `template_ent_id` int(11) default NULL,
   PRIMARY KEY  (`template_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_template`
-#
+--
+--导出表中的数据 `gp_template`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_theme`
-#
+--
+--表的结构 `gp_theme`
+--
 
 DROP TABLE IF EXISTS `gp_theme`;
 CREATE TABLE IF NOT EXISTS `gp_theme` (
@@ -720,11 +720,11 @@ CREATE TABLE IF NOT EXISTS `gp_theme` (
   `theme_type` int(11) default '0',
   `theme_paper_width` int(11) default NULL,
   PRIMARY KEY  (`theme_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=6 ;
 
-#
-# 导出表中的数据 `gp_theme`
-#
+--
+--导出表中的数据 `gp_theme`
+--
 
 INSERT INTO `gp_theme` (`theme_id`, `theme_name`, `theme_pic`, `theme_folder`, `theme_time`, `theme_ent_id`, `theme_stat`, `theme_type`, `theme_paper_width`) VALUES
 (1, '主题1', './theme/01.jpg', 'paper/01', '2010-10-10 00:00:01', 0, 1, 0, 550),
@@ -736,11 +736,11 @@ INSERT INTO `gp_theme` (`theme_id`, `theme_name`, `theme_pic`, `theme_folder`, `
 (7, '主题7', './theme/07.jpg', 'paper/07', '2010-10-10 00:00:01', 0, 1, 0, 320),
 (8, '主题8', './theme/08.jpg', 'paper/08', '2010-10-10 00:00:01', 0, 1, 0, 380);
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_ublock`
-#
+--
+--表的结构 `gp_ublock`
+--
 
 DROP TABLE IF EXISTS `gp_ublock`;
 CREATE TABLE IF NOT EXISTS `gp_ublock` (
@@ -758,18 +758,18 @@ CREATE TABLE IF NOT EXISTS `gp_ublock` (
   `ublock_bg_img` mediumtext,
   `ublock_ent_id` int(11) default NULL,
   PRIMARY KEY  (`ublock_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_ublock`
-#
+--
+--导出表中的数据 `gp_ublock`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_udiv`
-#
+--
+--表的结构 `gp_udiv`
+--
 
 DROP TABLE IF EXISTS `gp_udiv`;
 CREATE TABLE IF NOT EXISTS `gp_udiv` (
@@ -784,18 +784,18 @@ CREATE TABLE IF NOT EXISTS `gp_udiv` (
   `udiv_bg_color` varchar(50) default NULL,
   `udiv_ent_id` int(11) default NULL,
   PRIMARY KEY  (`udiv_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_udiv`
-#
+--
+--导出表中的数据 `gp_udiv`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_uelement`
-#
+--
+--表的结构 `gp_uelement`
+--
 
 DROP TABLE IF EXISTS `gp_uelement`;
 CREATE TABLE IF NOT EXISTS `gp_uelement` (
@@ -808,18 +808,18 @@ CREATE TABLE IF NOT EXISTS `gp_uelement` (
   `uelement_height` int(11) default NULL,
   `uelement_ent_id` int(11) default NULL,
   PRIMARY KEY  (`uelement_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_uelement`
-#
+--
+--导出表中的数据 `gp_uelement`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `gp_utemplate`
-#
+--
+--表的结构 `gp_utemplate`
+--
 
 DROP TABLE IF EXISTS `gp_utemplate`;
 CREATE TABLE IF NOT EXISTS `gp_utemplate` (
@@ -828,18 +828,18 @@ CREATE TABLE IF NOT EXISTS `gp_utemplate` (
   `utemplate_mother_id` bigint(20) default NULL,
   `utemplate_ent_id` int(11) default NULL,
   PRIMARY KEY  (`utemplate_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `gp_utemplate`
-#
+--
+--导出表中的数据 `gp_utemplate`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_ad`
-#
+--
+--表的结构 `p_ad`
+--
 
 DROP TABLE IF EXISTS `p_ad`;
 CREATE TABLE IF NOT EXISTS `p_ad` (
@@ -850,18 +850,18 @@ CREATE TABLE IF NOT EXISTS `p_ad` (
   `ad_pic` tinytext,
   `ad_unit_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`ad_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_ad`
-#
+--
+--导出表中的数据 `p_ad`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_ent`
-#
+--
+--表的结构 `p_ent`
+--
 
 DROP TABLE IF EXISTS `p_ent`;
 CREATE TABLE IF NOT EXISTS `p_ent` (
@@ -898,20 +898,20 @@ CREATE TABLE IF NOT EXISTS `p_ent` (
   `ent_school_type` int(11) NOT NULL default '0',
   `ent_paper_type` int(11) NOT NULL default '0',
   PRIMARY KEY  (`ent_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=108 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=108 ;
 
-#
-# 导出表中的数据 `p_ent`
-#
-
+--
+--导出表中的数据 `p_ent`
+--
+use xpaper;
 INSERT INTO `p_ent` (`ent_id`, `ent_stat`, `ent_name`, `ent_paper_name`, `ent_pos`, `ent_contact`, `ent_dept`, `ent_job`, `ent_tel`, `ent_fax`, `ent_email`, `ent_http`, `ent_add`, `ent_zip`, `ent_begin_time`, `ent_end_time`, `ent_update_time`, `ent_update_release_id`, `ent_paper_url`, `ent_url`, `ent_update_release_name`, `ent_reg_time`, `ent_last_logon_time`, `ent_logon_counter`, `ent_pub_type`, `ent_ftp_folder`, `ent_comment_count`, `ent_comment_point`, `ent_comment_content`, `ent_comment_style`, `ent_school_type`, `ent_paper_type`) VALUES
 (107, 1, 'Xpaper数字报', '《Xpaper数字报》', '900180017008', '', '', '', '8610-62713015', '8610-62713015', 'webmaster@xpaper.com', 'http://www.*.xpaper.com/', 'beijing', '100089', '2008-08-18 13:40:59', '2008-10-30 00:00:00', '2008-11-15 11:01:03', 2, './newspic/_paper/1/2/4ccd05c616ad752cb043ccd5a9d67025316636.jpg.jpg.jpg', 'hgc45143.chinaw3.com', 'no.1', '2008-04-13 13:38:44', '2009-11-03 06:42:48', 127, 0, 'admin', 0, 0, 0, 0, 0, 0);
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_good`
-#
+--
+--表的结构 `p_good`
+--
 
 DROP TABLE IF EXISTS `p_good`;
 CREATE TABLE IF NOT EXISTS `p_good` (
@@ -923,18 +923,18 @@ CREATE TABLE IF NOT EXISTS `p_good` (
   `good_unit_id` int(11) NOT NULL default '0',
   `good_pub_type` int(11) NOT NULL default '0',
   PRIMARY KEY  (`good_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_good`
-#
+--
+--导出表中的数据 `p_good`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_image`
-#
+--
+--表的结构 `p_image`
+--
 
 DROP TABLE IF EXISTS `p_image`;
 CREATE TABLE IF NOT EXISTS `p_image` (
@@ -945,18 +945,18 @@ CREATE TABLE IF NOT EXISTS `p_image` (
   `image_uploadtime` datetime default NULL,
   `image_unit_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`image_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_image`
-#
+--
+--导出表中的数据 `p_image`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_link`
-#
+--
+--表的结构 `p_link`
+--
 
 DROP TABLE IF EXISTS `p_link`;
 CREATE TABLE IF NOT EXISTS `p_link` (
@@ -969,18 +969,18 @@ CREATE TABLE IF NOT EXISTS `p_link` (
   `link_end_id` int(11) default NULL,
   `link_unit_id` int(11) default '0',
   PRIMARY KEY  (`link_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_link`
-#
+--
+--导出表中的数据 `p_link`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_motif`
-#
+--
+--表的结构 `p_motif`
+--
 
 DROP TABLE IF EXISTS `p_motif`;
 CREATE TABLE IF NOT EXISTS `p_motif` (
@@ -989,18 +989,18 @@ CREATE TABLE IF NOT EXISTS `p_motif` (
   `motif_ord` int(11) default NULL,
   `motif_unit_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`motif_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_motif`
-#
+--
+--导出表中的数据 `p_motif`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_msg`
-#
+--
+--表的结构 `p_msg`
+--
 
 DROP TABLE IF EXISTS `p_msg`;
 CREATE TABLE IF NOT EXISTS `p_msg` (
@@ -1013,18 +1013,18 @@ CREATE TABLE IF NOT EXISTS `p_msg` (
   `msg_respons` mediumtext,
   `msg_unit_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`msg_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_msg`
-#
+--
+--导出表中的数据 `p_msg`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_news`
-#
+--
+--表的结构 `p_news`
+--
 
 DROP TABLE IF EXISTS `p_news`;
 CREATE TABLE IF NOT EXISTS `p_news` (
@@ -1048,18 +1048,18 @@ CREATE TABLE IF NOT EXISTS `p_news` (
   `news_unit_id` int(11) NOT NULL default '0',
   `news_doc_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`news_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_news`
-#
+--
+--导出表中的数据 `p_news`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_node`
-#
+--
+--表的结构 `p_node`
+--
 
 DROP TABLE IF EXISTS `p_node`;
 CREATE TABLE IF NOT EXISTS `p_node` (
@@ -1078,18 +1078,18 @@ CREATE TABLE IF NOT EXISTS `p_node` (
   `node_sort_type` int(11) default NULL,
   `node_unit_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`node_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_node`
-#
+--
+--导出表中的数据 `p_node`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_superadmin`
-#
+--
+--表的结构 `p_superadmin`
+--
 
 DROP TABLE IF EXISTS `p_superadmin`;
 CREATE TABLE IF NOT EXISTS `p_superadmin` (
@@ -1102,20 +1102,20 @@ CREATE TABLE IF NOT EXISTS `p_superadmin` (
   `superadmin_email` varchar(255) default NULL,
   `superadmin_unit_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`superadmin_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=3 ;
 
-#
-# 导出表中的数据 `p_superadmin`
-#
+--
+--导出表中的数据 `p_superadmin`
+--
 
 INSERT INTO `p_superadmin` (`superadmin_id`, `superadmin_name`, `superadmin_pass`, `superadmin_work`, `superadmin_rank`, `superadmin_showname`, `superadmin_email`, `superadmin_unit_id`) VALUES
 (2, 'admin', 'f6fdffe48c908deb0f4c3bd36c032e72', '-', 100, 'www', 'x@xpaper.com', 0);
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_tran`
-#
+--
+--表的结构 `p_tran`
+--
 
 DROP TABLE IF EXISTS `p_tran`;
 CREATE TABLE IF NOT EXISTS `p_tran` (
@@ -1125,22 +1125,22 @@ CREATE TABLE IF NOT EXISTS `p_tran` (
   `tran_time` datetime default NULL,
   `tran_ip` varchar(60) default NULL,
   PRIMARY KEY  (`tran_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=76 ;
 
-#
-# 导出表中的数据 `p_tran`
-#
+--
+--导出表中的数据 `p_tran`
+--
 
 INSERT INTO `p_tran` (`tran_id`, `tran_str`, `tran_admin_id`, `tran_time`, `tran_ip`) VALUES
 (18, 'afffc6b359537db539f5c3707825d4c7146256c2536501a6861b1cadd57b099b8ee5f4421250', 87, '2007-02-06 06:42:51', '127.0.0.1'),
 (19, 'feded19f30744eb146a9c280cb0a4b4c37089649f70591860516585301f9c3a522d943211564', 87, '2007-02-06 06:44:06', '127.0.0.1'),
 (21, 'd88c7b4b125ab17135acaaad441b4b9279682e147e30a1100968dda5289c4d10be99b313782', 87, '2007-02-06 14:30:17', '127.0.0.1');
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `p_unit`
-#
+--
+--表的结构 `p_unit`
+--
 
 DROP TABLE IF EXISTS `p_unit`;
 CREATE TABLE IF NOT EXISTS `p_unit` (
@@ -1151,18 +1151,18 @@ CREATE TABLE IF NOT EXISTS `p_unit` (
   `unit_support` varchar(50) default NULL,
   `unit_path` varchar(20) default NULL,
   PRIMARY KEY  (`unit_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `p_unit`
-#
+--
+--导出表中的数据 `p_unit`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `x_action`
-#
+--
+--表的结构 `x_action`
+--
 
 DROP TABLE IF EXISTS `x_action`;
 CREATE TABLE IF NOT EXISTS `x_action` (
@@ -1172,18 +1172,18 @@ CREATE TABLE IF NOT EXISTS `x_action` (
   `action_body` text,
   `action_time` datetime default NULL,
   PRIMARY KEY  (`action_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `x_action`
-#
+--
+--导出表中的数据 `x_action`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `x_actionmember`
-#
+--
+--表的结构 `x_actionmember`
+--
 
 DROP TABLE IF EXISTS `x_actionmember`;
 CREATE TABLE IF NOT EXISTS `x_actionmember` (
@@ -1195,18 +1195,18 @@ CREATE TABLE IF NOT EXISTS `x_actionmember` (
   `actionmember_idnum` varchar(20) NOT NULL default '',
   `actionmember_contact` text NOT NULL,
   PRIMARY KEY  (`actionmember_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `x_actionmember`
-#
+--
+--导出表中的数据 `x_actionmember`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `x_committee`
-#
+--
+--表的结构 `x_committee`
+--
 
 DROP TABLE IF EXISTS `x_committee`;
 CREATE TABLE IF NOT EXISTS `x_committee` (
@@ -1218,18 +1218,18 @@ CREATE TABLE IF NOT EXISTS `x_committee` (
   `committee_password` varchar(20) default NULL,
   `committee_unit_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`committee_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `x_committee`
-#
+--
+--导出表中的数据 `x_committee`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `x_pingxuan`
-#
+--
+--表的结构 `x_pingxuan`
+--
 
 DROP TABLE IF EXISTS `x_pingxuan`;
 CREATE TABLE IF NOT EXISTS `x_pingxuan` (
@@ -1240,18 +1240,18 @@ CREATE TABLE IF NOT EXISTS `x_pingxuan` (
   `pingxuan_time` datetime default NULL,
   `pingxuan_status` int(11) NOT NULL default '0',
   PRIMARY KEY  (`pingxuan_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `x_pingxuan`
-#
+--
+--导出表中的数据 `x_pingxuan`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `x_pxcate`
-#
+--
+--表的结构 `x_pxcate`
+--
 
 DROP TABLE IF EXISTS `x_pxcate`;
 CREATE TABLE IF NOT EXISTS `x_pxcate` (
@@ -1269,18 +1269,18 @@ CREATE TABLE IF NOT EXISTS `x_pxcate` (
   `pxcate_lv9_lmt` int(11) NOT NULL default '0',
   `pxcate_lv10_lmt` int(11) NOT NULL default '0',
   PRIMARY KEY  (`pxcate_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `x_pxcate`
-#
+--
+--导出表中的数据 `x_pxcate`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `x_pxdoc`
-#
+--
+--表的结构 `x_pxdoc`
+--
 
 DROP TABLE IF EXISTS `x_pxdoc`;
 CREATE TABLE IF NOT EXISTS `x_pxdoc` (
@@ -1292,18 +1292,18 @@ CREATE TABLE IF NOT EXISTS `x_pxdoc` (
   `pxdoc_lv` int(11) NOT NULL default '0',
   `pxdoc_sum_point` int(11) NOT NULL default '0',
   PRIMARY KEY  (`pxdoc_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `x_pxdoc`
-#
+--
+--导出表中的数据 `x_pxdoc`
+--
 
 
-# ############################
+----------------------------------------------------------
 
-#
-# 表的结构 `x_pxdoclv`
-#
+--
+--表的结构 `x_pxdoclv`
+--
 
 DROP TABLE IF EXISTS `x_pxdoclv`;
 CREATE TABLE IF NOT EXISTS `x_pxdoclv` (
@@ -1314,9 +1314,9 @@ CREATE TABLE IF NOT EXISTS `x_pxdoclv` (
   `pxdoclv_pxcate_id` int(11) NOT NULL default '0',
   `pxdoclv_body` text,
   PRIMARY KEY  (`pxdoclv_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8 AUTO_INCREMENT=1 ;
 
-#
-# 导出表中的数据 `x_pxdoclv`
-#
+--
+--导出表中的数据 `x_pxdoclv`
+--
 

@@ -9,16 +9,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jy.recimport.db.TxnConnection;
 import com.jy.recimport.model.ImportInfo;
+import com.jy.recimport.model.RecodeData;
 import com.jy.recimport.util.BaseException;
 
 interface RowCallback {
-    void processRow();
+    void processRow() throws BaseException;
 
     boolean isRowKeyword(String name);
 }
@@ -203,59 +204,178 @@ public class ImportService extends BaseService {
         FIELD_NAME_SET.add(FIELD_FIGURE_KEYWORD);
         FIELD_NAME_SET.add(FIELD_ILLUS_KEYWORD);
         FIELD_NAME_SET.add(FIELD_TEXT_KEYWORD);
-        FIELD_NAME_SET.add(FIELD_FOREWORD_KEYWORD);        
+        FIELD_NAME_SET.add(FIELD_FOREWORD_KEYWORD);
     }
 
     public void importData(ImportInfo importInfo) throws BaseException {
-        
-        TxnConnection conn = null;
+        final RecodeData recodeData = new RecodeData();
+        final KeyInfo lastKeyInfo = new KeyInfo();
         try {
-        ImportFileReader importFileReader = new ImportFileReader(importInfo);
-                    conn = super.getConnection();
-                    conn.begin();
-        importFileReader.setRowCallback(new RowCallback() {
+            ImportFileReader importFileReader = new ImportFileReader(importInfo);
+            super.begin();
+            importFileReader.setRowCallback(new RowCallback() {
 
-            @Override
-            public void processRow() {
-                System.out.println("----------------------- ROW --------------------------");
-            }
+                @Override
+                public void processRow() throws BaseException {
+                    processRecode(recodeData, lastKeyInfo);
+                }
 
-            @Override
-            public boolean isRowKeyword(String name) {
-                return name.equalsIgnoreCase(ROW_KEYWORD);
-            }
-        });
+                @Override
+                public boolean isRowKeyword(String name) {
+                    return name.equalsIgnoreCase(ROW_KEYWORD);
+                }
+            });
 
-        importFileReader.setFieldCallback(new FieldCallback() {
+            importFileReader.setFieldCallback(new FieldCallback() {
 
-            @Override
-            public void processField(String name, String value) {
-                System.out.println(name + "\t: " + value);
-            }
-
-            @Override
-            public boolean isValidField(String name) {
-                return FIELD_NAME_SET.contains(name);
-            }
-
-            @Override
-            public int getFieldCount() {
-                return FIELD_NAME_SET.size();
-            }
-
-        });
-
-        importFileReader.traverse();
-                    conn.commit();
-                } catch (SQLException ex) {
-                    if (conn != null) {
-                        try {
-                            conn.rollback();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                @Override
+                public void processField(String name, String value) {
+                    if ((FIELD_PUBDATE_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setPubdate(value.substring(0, 7));
+                    } else if ((FIELD_EDITION_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setEdition(value);
+                    } else if ((FIELD_PAGENAME_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setPagename(value);
+                    } else if ((FIELD_PAGEPDF_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setPagepdf(value);
+                    } else if ((FIELD_PAGEIMAGE_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setPageimage(value);
+                    } else if ((FIELD_PAGESIZE_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setPagesize(value);
+                    } else if ((FIELD_PAGEHEAD_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setPagehead(value);
+                    } else if ((FIELD_PAGETITLE_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setPagetitle(value);
+                    } else if ((FIELD_SUBTITLE_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setSubtitle(value);
+                    } else if ((FIELD_AUTHOR_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setAuthor(value);
+                    } else if ((FIELD_POSITION_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setPosition(value);
+                    } else if ((FIELD_FIGURE_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setFigure(value);
+                    } else if ((FIELD_ILLUS_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setIllus(value);
+                    } else if ((FIELD_TEXT_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setText(value);
+                    } else if ((FIELD_FOREWORD_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setForeword(value);
                     }
                 }
+
+                @Override
+                public boolean isValidField(String name) {
+                    return FIELD_NAME_SET.contains(name);
+                }
+
+                @Override
+                public int getFieldCount() {
+                    return FIELD_NAME_SET.size();
+                }
+
+            });
+
+            importFileReader.traverse();
+            super.commit();
+        } catch (BaseException ex) {
+            super.rollback();
+        }
     }
 
+    class KeyInfo {
+        public int releaseId = 0;
+        public boolean isNewRelease = true;
+        public boolean isNewPaper = true;
+        public String releaseData = "";
+        public String pageFullName = "";
+    }
+    
+    private KeyInfo processRecode(final RecodeData recodeData, KeyInfo lastKeyInfo) throws BaseException {
+        final KeyInfo keyInfo = new KeyInfo();
+        
+        queryReleaseId(recodeData, keyInfo);
+
+        if (keyInfo.isNewRelease) {
+            keyInfo.releaseId = this.insertNewGP(recodeData);
+            keyInfo.isNewPaper = true;
+        }else{
+            
+        }
+        
+        return keyInfo ;
+
+    }
+    
+    private void queryPaperId(final RecodeData recodeData, final KeyInfo keyInfo) throws BaseException{
+        String releaseIdSql = "select paper_id from gp_paper where paper_release_id = ? and paper_name_cn = ?";
+        super.executeSQL(releaseIdSql, new DBQueryProcess() {
+            @Override
+            public Object resultProcess(ResultSet result) throws SQLException {
+                if (result.next()) {
+                    keyInfo.releaseId = result.getInt(0);
+                } else {
+                    keyInfo.isNewRelease = true;
+                }
+                return keyInfo;
+            }
+
+            @Override
+            public void addParameters(java.sql.PreparedStatement ps) throws SQLException {
+                int i=1;                
+                ps.setString(i++, recodeData.getPubdate());
+                ps.setString(i++, recodeData.getPageFullname());
+            }
+        });
+    }
+
+    private void queryReleaseId(final RecodeData recodeData, final KeyInfo keyInfo)
+            throws BaseException {
+        String releaseIdSql = "select release_id from gp_release where release_time = ?";
+        super.executeSQL(releaseIdSql, new DBQueryProcess() {
+            @Override
+            public Object resultProcess(ResultSet result) throws SQLException {
+                if (result.next()) {
+                    keyInfo.releaseId = result.getInt(0);
+                } else {
+                    keyInfo.isNewRelease = true;
+                }
+                return keyInfo;
+            }
+
+            @Override
+            public void addParameters(java.sql.PreparedStatement ps) throws SQLException {
+                ps.setString(1, recodeData.getPubdate());
+            }
+        });
+    }
+
+    private int insertNewGP(final RecodeData recodeData) throws BaseException {
+        String insertSQL = "insert into gp_release( "
+                + "release_name, release_time, release_pubtime, release_opentime, "
+                + "release_doing, release_total, release_ent_id, release_pagecount, "
+                + "release_to1, release_whodo, release_whatindex) values ("
+                + "'第x期', ?, ?, ?, 0, '第x期', 107, 0, null, '-', 0 )";
+        super.executeSQL(insertSQL, new DBQueryProcess() {
+
+            @Override
+            public Object resultProcess(ResultSet result) throws SQLException {
+                return null;
+            }
+
+            @Override
+            public void addParameters(java.sql.PreparedStatement ps) throws SQLException {
+                int i = 1;
+                ps.setString(i++, recodeData.getPubdate());
+                ps.setString(i++, recodeData.getPubdate());
+                ps.setString(i++, recodeData.getPubdate());
+            }
+        });
+        
+        final KeyInfo keyInfo = new KeyInfo();
+        this.queryReleaseId(recodeData, keyInfo);
+        if( keyInfo.isNewRelease ){
+            throw new BaseException("插入期次信息失败！");
+        }
+        return keyInfo.releaseId;
+    }
 }
