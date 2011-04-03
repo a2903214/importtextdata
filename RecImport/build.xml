@@ -7,7 +7,7 @@
         <jar destfile="./release/recimport.jar">
             <manifest>
                 <attribute name="Main-Class" value="com.jy.recimport.ui.MainFrame"/>
-                <attribute name="Class-Path" value=". recimport_lib/beansbinding-1.2.1.jar recimport_lib/mysql-connector-java-5.1.15-bin.jar recimport_lib/junit.jar recimport_lib/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+                <attribute name="Class-Path" value=". recimport_lib/beansbinding-1.2.1.jar recimport_lib/mysql-connector-java-5.1.15-bin.jar"/>
             </manifest>
             <fileset dir="./bin"/>
         </jar>
