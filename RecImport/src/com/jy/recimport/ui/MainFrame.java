@@ -27,7 +27,7 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction {
     private ImportService importService;
 
     public MainFrame() {
-    
+
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -75,7 +75,7 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction {
     private static final long serialVersionUID = 6078189396163696118L;
 
     public static void main(String[] args) {
-        
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Throwable tr) {
@@ -107,6 +107,15 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction {
     @Override
     public void importData(ImportInfo importInfo) throws BaseException {
         this.importService.importData(importInfo);
+
+    }
+
+    @Override
+    public void processMessage(int messageType, String message, Throwable tr) {
+        JOptionPane.showMessageDialog(this, message, "", messageType);
+        if( tr != null ){
+            tr.printStackTrace();
+        }
 
     }
 

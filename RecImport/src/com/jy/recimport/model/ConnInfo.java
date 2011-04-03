@@ -10,7 +10,7 @@ public class ConnInfo {
     public ConnInfo(){
         this.host = "localhost";
         this.port = "3306";
-        this.dbname = "test";
+        this.dbname = "xpaper";
         this.username = "root";
         this.password = "root";
     }

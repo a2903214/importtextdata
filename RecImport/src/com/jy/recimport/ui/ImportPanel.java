@@ -7,8 +7,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -41,6 +43,7 @@ public class ImportPanel extends JPanel {
     private JButton browseButton;
     private JLabel encodingLabel;
     private JTextField encodingTextField;
+    private JFileChooser jFileChooser ;
 
     public void setEnabled(boolean enabled) {
         this.filepathTextField.setEnabled(enabled);
@@ -86,7 +89,20 @@ public class ImportPanel extends JPanel {
         fileInfoPanel.add(filepathTextField, gbc_filepathTextField);
         filepathTextField.setColumns(10);
 
+        jFileChooser = new JFileChooser();
+        jFileChooser.setMultiSelectionEnabled(false);
+        
         browseButton = new JButton("...");
+        browseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                if ( JFileChooser.APPROVE_OPTION == jFileChooser.showOpenDialog(null) ){
+                    File file = jFileChooser.getSelectedFile();
+                    filepathTextField.setText(file.getAbsolutePath());
+                }
+            }
+        });        
+        
         GridBagConstraints gbc_browseButton = new GridBagConstraints();
         gbc_browseButton.insets = new Insets(0, 0, 5, 0);
         gbc_browseButton.fill = GridBagConstraints.VERTICAL;
@@ -128,9 +144,9 @@ public class ImportPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     ImportPanel.this.importAction.importData(importInfo);
-                } catch (BaseException e1) {
-                    JOptionPane.showMessageDialog(ImportPanel.this, e1.getLocalizedMessage(),
-                                                  "导入数据失败", JOptionPane.ERROR_MESSAGE);
+                    ImportPanel.this.importAction.processMessage(JOptionPane.INFORMATION_MESSAGE, "导入数据成功", null);
+                } catch (BaseException ex) {
+                    ImportPanel.this.importAction.processMessage(JOptionPane.ERROR_MESSAGE, ex.getLocalizedMessage(), ex);
                 }
             }
         });

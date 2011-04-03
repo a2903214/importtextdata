@@ -66,7 +66,7 @@ public class TxnConnection {
     }
 
     public synchronized void begin() throws SQLException {
-        if (txnBeginTimes < 0) {
+        if (txnBeginTimes == 0) {
             if (conn.getAutoCommit()) {
                 conn.setAutoCommit(false);
             }

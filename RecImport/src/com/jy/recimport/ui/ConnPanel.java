@@ -176,10 +176,8 @@ public class ConnPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     ConnPanel.this.connAction.connectDB(connInfo);
-                } catch (BaseException e1) {
-                    JOptionPane.showMessageDialog(ConnPanel.this, "连接数据库失败",
-                                                  e1.getLocalizedMessage(),
-                                                  JOptionPane.ERROR_MESSAGE);
+                } catch (BaseException ex) {
+                    ConnPanel.this.connAction.processMessage(JOptionPane.ERROR_MESSAGE, ex.getLocalizedMessage(), ex);
                 }
             }
         });
@@ -196,10 +194,8 @@ public class ConnPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     ConnPanel.this.connAction.disconnectDB();
-                } catch (Throwable e1) {
-                    JOptionPane.showMessageDialog(ConnPanel.this, "断开连接失败",
-                                                  e1.getLocalizedMessage(),
-                                                  JOptionPane.ERROR_MESSAGE);
+                } catch (Throwable ex) {
+                    ConnPanel.this.connAction.processMessage(JOptionPane.ERROR_MESSAGE, ex.getLocalizedMessage(), ex);
                 }
             }
         });
