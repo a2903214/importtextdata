@@ -3,18 +3,13 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="E:/doc/MyOpenSource/RecImport/release/recimport.jar">
+    	<delete file="./release/recimport.jar"></delete>
+        <jar destfile="./release/recimport.jar">
             <manifest>
                 <attribute name="Main-Class" value="com.jy.recimport.ui.MainFrame"/>
                 <attribute name="Class-Path" value=". recimport_lib/beansbinding-1.2.1.jar recimport_lib/mysql-connector-java-5.1.15-bin.jar recimport_lib/junit.jar recimport_lib/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
             </manifest>
-            <fileset dir="E:/doc/MyOpenSource/RecImport/bin"/>
+            <fileset dir="./bin"/>
         </jar>
-        <delete dir="E:/doc/MyOpenSource/RecImport/release/recimport_lib"/>
-        <mkdir dir="E:/doc/MyOpenSource/RecImport/release/recimport_lib"/>
-        <copy file="E:/doc/MyOpenSource/RecImport/lib/beansbinding-1.2.1.jar" todir="E:/doc/MyOpenSource/RecImport/release/recimport_lib"/>
-        <copy file="E:/doc/MyOpenSource/RecImport/lib/mysql-connector-java-5.1.15-bin.jar" todir="E:/doc/MyOpenSource/RecImport/release/recimport_lib"/>
-        <copy file="D:/eclipse3.6/eclipse/plugins/org.junit_4.8.1.v4_8_1_v20100427-1100/junit.jar" todir="E:/doc/MyOpenSource/RecImport/release/recimport_lib"/>
-        <copy file="D:/eclipse3.6/eclipse/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar" todir="E:/doc/MyOpenSource/RecImport/release/recimport_lib"/>
     </target>
 </project>
