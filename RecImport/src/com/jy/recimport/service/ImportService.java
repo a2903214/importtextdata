@@ -179,6 +179,7 @@ public class ImportService extends BaseService {
     public final static String FIELD_PAGEHEAD_KEYWORD = "引题";
     public final static String FIELD_PAGETITLE_KEYWORD = "标题";
     public final static String FIELD_SUBTITLE_KEYWORD = "副题";
+    public final static String FIELD_FOREWORD_KEYWORD = "引言";
     public final static String FIELD_AUTHOR_KEYWORD = "作者";
     public final static String FIELD_POSITION_KEYWORD = "坐标";
     public final static String FIELD_FIGURE_KEYWORD = "插图";
@@ -202,6 +203,7 @@ public class ImportService extends BaseService {
         FIELD_NAME_SET.add(FIELD_FIGURE_KEYWORD);
         FIELD_NAME_SET.add(FIELD_ILLUS_KEYWORD);
         FIELD_NAME_SET.add(FIELD_TEXT_KEYWORD);
+        FIELD_NAME_SET.add(FIELD_FOREWORD_KEYWORD);        
     }
 
     public void importData(ImportInfo importInfo) throws BaseException {
