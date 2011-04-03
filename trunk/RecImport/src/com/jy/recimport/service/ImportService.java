@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import com.jy.recimport.model.ConnInfo;
 import com.jy.recimport.model.ImportInfo;
 import com.jy.recimport.model.RecodeData;
 import com.jy.recimport.util.BaseException;
@@ -32,6 +33,11 @@ class KeyInfo {
 }
 
 public class ImportService extends BaseService {
+    
+    public ImportService(ConnInfo connInfo) throws BaseException {
+        super(connInfo);
+    }
+
     public final static String ROW_KEYWORD = "REC";
 
     public final static String FIELD_PUBDATE_KEYWORD = "出版日期";
@@ -161,6 +167,7 @@ public class ImportService extends BaseService {
             super.commit();
         } catch (BaseException ex) {
             super.rollback();
+            throw ex;
         }
     }
 
