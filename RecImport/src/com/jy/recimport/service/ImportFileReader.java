@@ -37,6 +37,8 @@ public class ImportFileReader {
     private final static int START_STATUS = 1;
     private final static int KEYWORD_STATUS = 2;
     private final static int FIELD_DATA_STATUS = 3;
+    private static final int ROW_KEYWORD_STATUS = 4;
+    private static final int FIELD_KEYWORD_STATUS = 5;
 
     private CharArrayWriter keywordDataWriter = new CharArrayWriter(50);
     private CharArrayWriter fieldDataWriter = new CharArrayWriter(500);
@@ -70,11 +72,13 @@ public class ImportFileReader {
                 switch (status) {
                 case START_STATUS:
                     if (curChar == '<') {
-                        status = KEYWORD_STATUS;
+                        status = ROW_KEYWORD_STATUS;
                     } else {
                         throw new BaseException("文件起始位置出现非法结构");
                     }
                     break;
+                case ROW_KEYWORD_STATUS:
+                case FIELD_KEYWORD_STATUS:
                 case KEYWORD_STATUS: {
                     do {
                         keywordDataWriter.write(curChar);
@@ -89,7 +93,13 @@ public class ImportFileReader {
                                 throw new BaseException("列起始标示符不正确");
                             }
                         }
+                        status = FIELD_KEYWORD_STATUS;
+                    } else if (ROW_KEYWORD_STATUS == status) {
+                        throw new BaseException("文件格式不正确");
                     } else if (!fieldCallback.isValidField(currentKeyword)) {
+                        if (FIELD_KEYWORD_STATUS == status) {
+                            throw new BaseException("文件格式不正确");
+                        }
                         fieldDataWriter.write('<');
                         fieldDataWriter.write(currentKeyword);
                         fieldDataWriter.write('>');
@@ -144,6 +154,16 @@ public class ImportFileReader {
             fieldCount = 0;
         }
         firstRow = false;
+    }
+
+    public void close() {
+        if (this.reader != null) {
+            try {
+                this.reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void setFieldCallback(FieldCallback fieldCallback) {

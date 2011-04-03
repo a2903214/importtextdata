@@ -15,8 +15,13 @@ public abstract class BaseService {
     public ConnInfo getConnInfo() {
         return connInfo;
     }
+    
+    protected BaseService(ConnInfo connInfo) throws BaseException{
+        this.connInfo = connInfo;
+        this.connectDB(connInfo);
+    }
 
-    public void connectDB(ConnInfo connInfo) throws BaseException {
+    private void connectDB(ConnInfo connInfo) throws BaseException {
 
         if (connInfo != null) {
             this.connInfo = connInfo;

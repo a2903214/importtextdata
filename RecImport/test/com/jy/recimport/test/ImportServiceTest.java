@@ -6,8 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.jy.recimport.model.ConnInfo;
 import com.jy.recimport.model.ImportInfo;
 import com.jy.recimport.service.ImportService;
+import com.jy.recimport.service.ServiceFactory;
 import com.jy.recimport.util.BaseException;
 
 public class ImportServiceTest {
@@ -19,7 +21,7 @@ public class ImportServiceTest {
         importInfo = new ImportInfo();
         importInfo.setFilePath("./file/recode.txt");
         importInfo.setFileEncoding("GBK");
-        importService = new ImportService();
+        importService = ServiceFactory.createService(ImportService.class, new ConnInfo());
     }
 
     @After

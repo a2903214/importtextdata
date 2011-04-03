@@ -19,6 +19,7 @@ import com.jy.recimport.db.ConnectionPool;
 import com.jy.recimport.model.ConnInfo;
 import com.jy.recimport.model.ImportInfo;
 import com.jy.recimport.service.ImportService;
+import com.jy.recimport.service.ServiceFactory;
 import com.jy.recimport.util.BaseException;
 
 public class MainFrame extends JFrame implements ConnAction, ImportAction {
@@ -41,7 +42,6 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction {
         });
         setTitle("数据导入程序");
         getContentPane().setLayout(new BorderLayout());
-        importService = new ImportService();
 
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction {
 
     @Override
     public void connectDB(ConnInfo connInfo) throws BaseException {
-        importService.connectDB(connInfo);
+        importService = ServiceFactory.createService(ImportService.class, connInfo);
         importPanel.setEnabled(true);
         connPanel.setConnectEnabled(false);
 

@@ -7,7 +7,7 @@ import com.jy.recimport.util.BaseException;
 
 public class ServiceFactory {
 
-    <T extends BaseService> T createService(Class<T> clazz, ConnInfo connInfo) throws BaseException {
+    public static <T extends BaseService> T createService(Class<T> clazz, ConnInfo connInfo) throws BaseException {
         T instance = null;
         try {
             Constructor<T> constructor = clazz.getConstructor(ConnInfo.class);
