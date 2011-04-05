@@ -119,6 +119,7 @@ public abstract class BaseService {
             this.commit();
         } catch (Throwable e) {
             this.rollback();
+            throw new BaseException("执行SQL语句失败:" + query, e);
         } finally {
             if (ps != null) {
                 try {

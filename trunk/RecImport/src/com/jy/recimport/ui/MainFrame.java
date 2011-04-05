@@ -83,7 +83,7 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction {
         }
         MainFrame mainFrame = new MainFrame();
         mainFrame.pack();
-        mainFrame.setSize(500, 390);
+        mainFrame.setSize(500, 410);
         mainFrame.setResizable(false);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);

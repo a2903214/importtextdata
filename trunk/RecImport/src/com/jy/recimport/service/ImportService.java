@@ -33,7 +33,7 @@ class KeyInfo {
 }
 
 public class ImportService extends BaseService {
-    
+
     public ImportService(ConnInfo connInfo) throws BaseException {
         super(connInfo);
     }
@@ -76,7 +76,7 @@ public class ImportService extends BaseService {
         FIELD_NAME_SET.add(FIELD_FOREWORD_KEYWORD);
     }
 
-    public void importData(ImportInfo importInfo) throws BaseException {
+    public void importData(final ImportInfo importInfo) throws BaseException {
         final RecodeData recodeData = new RecodeData();
         final KeyInfo lastKeyInfo = new KeyInfo();
         try {
@@ -124,7 +124,7 @@ public class ImportService extends BaseService {
                         String str = null;
                         for (int i = 0; st.hasMoreTokens(); i++) {
                             str = st.nextToken();
-                            int number = Integer.parseInt(str);
+                            int number = (int) (Integer.parseInt(str) * Double.parseDouble(importInfo.getScale()));
                             switch (i) {
                             case 0:
                                 recodeData.getPaperArea().setLeft(number);
@@ -214,13 +214,15 @@ public class ImportService extends BaseService {
             public void addParameters(PreparedStatement ps) throws SQLException {
                 int i = 1;
                 String position = recodeData.getPaperArea().getLeft() + ","
-                        + recodeData.getPaperArea().getTop() + ","
+                        + recodeData.getPaperArea().getBottom() + ","
                         + recodeData.getPaperArea().getRight() + ","
-                        + recodeData.getPaperArea().getBottom();
-                ps.setString(i++, "<area shape='rect' href='javascript:shownews(doc_id);' alt='"
-                        + recodeData.getPagetitle() + "' title='" + recodeData.getPagetitle()
-                        + "' onmouseover=MouseOverMap(" + position + "," + keyInfo.docId
-                        + ") onmouseout=MouseOutMap() coords='" + position + "'>");
+                        + recodeData.getPaperArea().getTop();
+                ps.setString(i++,
+                             "<area shape='rect' href='javascript:shownews(" + keyInfo.docId
+                                     + ");' alt='" + recodeData.getPagetitle() + "' title='"
+                                     + recodeData.getPagetitle() + "' onmouseover=MouseOverMap("
+                                     + position + "," + keyInfo.docId
+                                     + ") onmouseout=MouseOutMap() coords='" + position + "'>");
                 ps.setLong(i++, keyInfo.pageId);
             }
         });
