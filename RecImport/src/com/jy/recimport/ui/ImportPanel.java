@@ -44,12 +44,15 @@ public class ImportPanel extends JPanel {
     private JLabel encodingLabel;
     private JTextField encodingTextField;
     private JFileChooser jFileChooser ;
+    private JLabel scaleLabel;
+    private JTextField scaleTextField;
 
     public void setEnabled(boolean enabled) {
         this.filepathTextField.setEnabled(enabled);
         importButton.setEnabled(enabled);
         browseButton.setEnabled(enabled);
         encodingTextField.setEnabled(enabled);
+        scaleTextField.setEnabled(enabled);
     }
 
     /**
@@ -65,9 +68,9 @@ public class ImportPanel extends JPanel {
         add(fileInfoPanel, BorderLayout.CENTER);
         GridBagLayout gbl_fileInfoPanel = new GridBagLayout();
         gbl_fileInfoPanel.columnWidths = new int[] { 0, 0, 0, 0 };
-        gbl_fileInfoPanel.rowHeights = new int[] { 0, 0, 0 };
+        gbl_fileInfoPanel.rowHeights = new int[] { 0, 0, 0, 0 };
         gbl_fileInfoPanel.columnWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
-        gbl_fileInfoPanel.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+        gbl_fileInfoPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
         fileInfoPanel.setLayout(gbl_fileInfoPanel);
 
         JLabel filepathLabel = new JLabel("文件路径：");
@@ -129,6 +132,23 @@ public class ImportPanel extends JPanel {
         gbc_encodingTextField.gridy = 1;
         fileInfoPanel.add(encodingTextField, gbc_encodingTextField);
         encodingTextField.setColumns(10);
+        
+        scaleLabel = new JLabel("缩放比例：");
+        GridBagConstraints gbc_scaleLabel = new GridBagConstraints();
+        gbc_scaleLabel.anchor = GridBagConstraints.EAST;
+        gbc_scaleLabel.insets = new Insets(0, 0, 0, 5);
+        gbc_scaleLabel.gridx = 0;
+        gbc_scaleLabel.gridy = 2;
+        fileInfoPanel.add(scaleLabel, gbc_scaleLabel);
+        
+        scaleTextField = new JTextField();
+        GridBagConstraints gbc_scaleTextField = new GridBagConstraints();
+        gbc_scaleTextField.insets = new Insets(0, 0, 0, 5);
+        gbc_scaleTextField.fill = GridBagConstraints.HORIZONTAL;
+        gbc_scaleTextField.gridx = 1;
+        gbc_scaleTextField.gridy = 2;
+        fileInfoPanel.add(scaleTextField, gbc_scaleTextField);
+        scaleTextField.setColumns(10);
 
         JPanel buttonPanel = new JPanel();
         add(buttonPanel, BorderLayout.SOUTH);
@@ -184,5 +204,10 @@ public class ImportPanel extends JPanel {
         BeanProperty<JTextField, String> jTextFieldBeanProperty_1 = BeanProperty.create("text");
         AutoBinding<ImportInfo, String, JTextField, String> autoBinding_1 = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE, importInfo, importInfoBeanProperty_1, encodingTextField, jTextFieldBeanProperty_1);
         autoBinding_1.bind();
+        //
+        BeanProperty<ImportInfo, String> importInfoBeanProperty_2 = BeanProperty.create("scale");
+        BeanProperty<JTextField, String> jTextFieldBeanProperty_2 = BeanProperty.create("text");
+        AutoBinding<ImportInfo, String, JTextField, String> autoBinding_2 = Bindings.createAutoBinding(UpdateStrategy.READ_WRITE, importInfo, importInfoBeanProperty_2, scaleTextField, jTextFieldBeanProperty_2);
+        autoBinding_2.bind();
     }
 }

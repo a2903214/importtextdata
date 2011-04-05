@@ -1,9 +1,11 @@
 package com.jy.recimport.model;
 
 public class ImportInfo {
-    private String filePath = "./file/recode.txt";
+    private String filePath = "";
     
     private String fileEncoding = "GBK";
+    
+    private String scale = "0.1217948";
 
     public String getFilePath() {
         return filePath;
@@ -21,4 +23,12 @@ public class ImportInfo {
         return fileEncoding;
     }
 
+    public void setScale(String scale) {
+        this.scale = scale;
+    }
+
+    public String getScale() {
+        return scale;
+    }
+    
 }
