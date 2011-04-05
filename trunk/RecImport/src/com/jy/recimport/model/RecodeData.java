@@ -33,20 +33,20 @@ public class RecodeData {
         }
     }
     private String pubdate;
-    private String edition;
-    private String pagename;
-    private String pagepdf;
-    private String pageimage;
-    private String pagesize;
-    private String pagehead;
-    private String pagetitle;
-    private String subtitle;
-    private String author;
+    private String edition = "";
+    private String pagename = "";
+    private String pagepdf = "";
+    private String pageimage = "";
+    private String pagesize = "";
+    private String pagehead = "";
+    private String pagetitle = "";
+    private String subtitle = "" ;
+    private String author = "";
     private PaperArea paperArea = new PaperArea();
-    private String figure;
-    private String illus;
-    private String text;
-    private String foreword;
+    private String figure = "";
+    private String illus = "";
+    private String text = "" ;
+    private String foreword = "";
 
     public String getPubdate() {
         return pubdate;
