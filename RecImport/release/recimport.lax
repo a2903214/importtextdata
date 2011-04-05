@@ -103,7 +103,7 @@ lax.root.install.dir=.
 #   leave blank for no output, "console" to send to a console window,
 #   and any path to a file to save to the file
 
-lax.stderr.redirect=..\\recimport.log
+lax.stderr.redirect=.\\recimport.log
 
 
 #   LAX.STDIN.REDIRECT
@@ -119,7 +119,7 @@ lax.stdin.redirect=
 #   leave blank for no output, "console" to send to a console window,
 #   and any path to a file to save to the file
 
-lax.stdout.redirect=..\\recimport.log
+lax.stdout.redirect=.\\recimport.log
 
 
 #   LAX.USER.DIR
