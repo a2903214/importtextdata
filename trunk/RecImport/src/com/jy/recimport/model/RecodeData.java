@@ -47,6 +47,7 @@ public class RecodeData {
     private String illus = "";
     private String text = "" ;
     private String foreword = "";
+    private String releaseid = "X";
 
     public String getPubdate() {
         return pubdate;
@@ -73,7 +74,7 @@ public class RecodeData {
     }
     
     public String getPageFullname(){
-        return "第" + this.edition + "期 " + this.pagename;
+        return "第" + this.edition + "版 " + this.pagename;
     }
 
     public String getPagepdf() {
@@ -170,6 +171,18 @@ public class RecodeData {
 
     public void setForeword(String foreword) {
         this.foreword = foreword;
+    }
+
+    public String getReleaseid() {
+        return releaseid;
+    }
+
+    public void setReleaseid(String releaseid) {
+        this.releaseid = releaseid;
+    }
+    
+    public String getReleaseFullName(){
+        return "第" + this.releaseid + "期 ";
     }
 
 }

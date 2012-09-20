@@ -12,7 +12,7 @@ public class ConnInfo {
         this.port = "3306";
         this.dbname = "xpaper";
         this.username = "root";
-        this.password = "root";
+        this.password = "123456";
     }
 
     public String getHost() {
