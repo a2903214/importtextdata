@@ -83,7 +83,7 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction {
         }
         MainFrame mainFrame = new MainFrame();
         mainFrame.pack();
-        mainFrame.setSize(500, 410);
+        mainFrame.setSize(500, 450);
         mainFrame.setResizable(false);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
@@ -107,7 +107,6 @@ public class MainFrame extends JFrame implements ConnAction, ImportAction {
     @Override
     public void importData(ImportInfo importInfo) throws BaseException {
         this.importService.importData(importInfo);
-
     }
 
     @Override

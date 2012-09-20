@@ -55,6 +55,7 @@ public class ImportService extends BaseService {
     public final static String FIELD_FIGURE_KEYWORD = "插图";
     public final static String FIELD_ILLUS_KEYWORD = "插图说明";
     public final static String FIELD_TEXT_KEYWORD = "正文";
+    public final static String FIELD_RELEASEID_KEYWORD = "期号";
 
     public static final Set<String> FIELD_NAME_SET = new HashSet<String>();
 
@@ -74,6 +75,7 @@ public class ImportService extends BaseService {
         FIELD_NAME_SET.add(FIELD_ILLUS_KEYWORD);
         FIELD_NAME_SET.add(FIELD_TEXT_KEYWORD);
         FIELD_NAME_SET.add(FIELD_FOREWORD_KEYWORD);
+        FIELD_NAME_SET.add(FIELD_RELEASEID_KEYWORD);
     }
 
     public void importData(final ImportInfo importInfo) throws BaseException {
@@ -148,6 +150,8 @@ public class ImportService extends BaseService {
                         recodeData.setText(value);
                     } else if ((FIELD_FOREWORD_KEYWORD.equalsIgnoreCase(name))) {
                         recodeData.setForeword(value);
+                    } else if ((FIELD_RELEASEID_KEYWORD.equalsIgnoreCase(name))) {
+                        recodeData.setReleaseid(value);
                     }
                 }
 
@@ -308,7 +312,7 @@ public class ImportService extends BaseService {
                 ps.setLong(i++, keyInfo.releaseId);
                 ps.setString(i++, "/newspic/_paper/107/manual" + recodeData.getPageimage());
                 ps.setString(i++, recodeData.getPageFullname());
-                ps.setString(i++, "/newspic/_pdf/107/" + recodeData.getPagepdf());
+                ps.setString(i++, "/newspic/_paper/107/" + recodeData.getPagepdf());
             }
 
             @Override
@@ -349,11 +353,12 @@ public class ImportService extends BaseService {
                 + "release_name, release_time, release_pubtime, release_opentime, "
                 + "release_doing, release_total, release_ent_id, release_pagecount, "
                 + "release_to1, release_whodo, release_whatindex) values ("
-                + "'第X期', ?, ?, ?, 0, '总第X期', 107, 0, null, '-', 0 )";
+                + "?, ?, ?, ?, 0, '总第X期', 107, 0, null, '-', 0 )";
         super.executeSQL(insertSQL, new String[] { "release_id" }, new DBUpdateProcessAdapter() {
             @Override
             public void addParameters(java.sql.PreparedStatement ps) throws SQLException {
                 int i = 1;
+                ps.setString(i++, recodeData.getReleaseFullName());
                 ps.setString(i++, recodeData.getPubdate());
                 ps.setString(i++, recodeData.getPubdate());
                 ps.setString(i++, recodeData.getPubdate());
