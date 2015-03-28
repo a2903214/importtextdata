@@ -1,0 +1,1 @@
+Import formart style text data into mysql. Current data is very simple.
